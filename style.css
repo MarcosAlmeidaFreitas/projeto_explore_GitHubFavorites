@@ -7,3 +7,10 @@
 :root{
   font-size: 62.5%;
 }
+
+.sr-only{
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
