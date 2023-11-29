@@ -6,11 +6,47 @@
 
 :root{
   font-size: 62.5%;
+
+  /* Color usadas no tema claro */
+  --text-color-gray: #303030;
 }
 
+html.dark{
+  background-color: #303030;
+}
+
+body{
+  font-size: 1.6rem;
+  --ff-primary: 'Poppins', sans-serif;
+}
+
+/* Todos os seletores do body recebam a font-primary */
+body *{
+  font-family: var(--ff-primary);
+}
+
+/* classe resposavel por sumir com o texto da tela mas permanecer para o leitor de tela */
 .sr-only{
   width: 1px;
   height: 1px;
   overflow: hidden;
   position: absolute;
+}
+
+/* Responsavel pela parte de troca e configurações de estilos do botão de troca de tema(dark)*/
+.toggleMode{
+  position: absolute;
+  right: 2rem;
+  top: 3rem;
+}
+
+.toggleMode button{
+  background: none;
+  border: none;
+  font-size: 2rem;
+}
+
+html.dark .ph-moon,
+html:not(.dark) .ph-sun{
+  display: none;
 }

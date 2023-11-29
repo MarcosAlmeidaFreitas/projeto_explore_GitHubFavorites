@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>GitHub Favorites</title>
 
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script type="module" src="src/toggleMode.js" defer></script>
 </head>
 <body>
+  <div class="toggleMode">
+    <button id="toggleButton">
+      <i class="ph ph-moon"></i>
+      <i class="ph ph-sun"></i>
+    </button>
+  </div>
   <header>
     <h1>GitHub Favorites</h1>
     <div class="search">
@@ -22,13 +36,38 @@
       <tr> <!-- Linha da coluna da tabela --> 
         <th>Usuário</th> <!-- Usado para criar coluna da tabela -->
         <th>Repositórios</th>
-        <th>Seguidoresq</th>
+        <th>Seguidores</th>
         <th></th>
       </tr>
     </thead>
 
     <tbody>
+      <tr>
+        <td class="user">
+          <img src="https://github.com/MarcosAlmeidaFreitas.png" alt="imagem de usuário do Marcos Antonio">
+          <a href="https://github.com/MarcosAlmeidaFreitas" target="_blank">
+            <p>Marcos Antonio Almeida</p>
+            <span>MarcosAlmeidaFreitas</span>
+          </a>
+        </td>
+        <td class="repositories">76</td>
+        <td class="followers">9589</td>
+        <td>&times;</td>
+      </tr>
       
+      <tr>
+        <td class="user">
+          <img src="https://github.com/diego3g.png" alt="">
+          <a href="https://github.com/diego3g" target="_blank">
+            <p>Diego Fernandez</p>
+            <span>diego3g</span>
+          </a>
+        </td>
+        <td class="repositories">102</td>
+        <td class="followers">12365</td>
+        <td>&times;</td>
+      </tr>
+
     </tbody>
   </table>
   
