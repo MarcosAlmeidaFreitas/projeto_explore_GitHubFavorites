@@ -9,6 +9,8 @@
 
   /* Color usadas no tema claro */
   --text-color-gray: #303030;
+  --hue: 140;
+  --primary-color: hsl(var(--hue), 100%, 40%);
 }
 
 html.dark{
@@ -27,10 +29,17 @@ body *{
 
 /* classe resposavel por sumir com o texto da tela mas permanecer para o leitor de tela */
 .sr-only{
+  /* Esses 4 são indispensáveis */
+  position: absolute;
   width: 1px;
   height: 1px;
   overflow: hidden;
-  position: absolute;
+
+  /* Outras configurações */
+  clip: rect(0,0,0,0); /* Forçando uma caixa retangular com 0 em cima, em baixo e nas laterais */ 
+  /*Se caso existir uma area com texto com quebra de linha ele irá colocar somente em uma linha*/
+  white-space: nowrap; 
+  border-width: 0; /*Se caso existir um elemento com borda vai ser retirado*/
 }
 
 /* Responsavel pela parte de troca e configurações de estilos do botão de troca de tema(dark)*/
@@ -49,4 +58,45 @@ body *{
 html.dark .ph-moon,
 html:not(.dark) .ph-sun{
   display: none;
+}
+
+button{
+  border: none;
+  color: white;
+}
+
+#app{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1{
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+.search{
+  display: flex;
+  align-items: center;
+}
+
+.search input{
+  height: 3.2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem 0 0 0.4rem;
+  padding: 0 0.8rem;
+}
+
+.search button{
+  border-radius: 0 0.5rem 0.5rem 0;
+  height: 3.2rem;
+  padding: 0.5rem;
+  background-color: var(--primary-color);
 }
