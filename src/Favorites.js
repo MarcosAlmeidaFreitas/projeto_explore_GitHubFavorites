@@ -1,3 +1,12 @@
+export class GitHubUser{
+  static search(username){
+    const endpoint = `https://api.github.com/users/${username}`
+
+    return fetch(endpoint)
+    .then(data => data.json())
+    .then(({login, name, public_repos, followers}) => {})
+  }
+}
 export class Favorites {
   constructor(root){
     this.root = document.querySelector(root);
@@ -5,26 +14,13 @@ export class Favorites {
   }
 
   load(){
-    this.entries = [
-      {
-        login: 'maykbrito',
-        name: 'Mayk Brito',
-        public_repos: '76',
-        followers: '120000'
-      },
-      {
-        login: 'MarcosAlmeidaFreitas',
-        name: 'Marcos Antonio Almeida',
-        public_repos: '30',
-        followers: '0'
-      },
-      {
-        login: 'diego3g',
-        name: 'Diego Fernandes',
-        public_repos: '120',
-        followers: '150000'
-      }
-    ];
+    this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || [];
+  }
+
+  delete(user){
+    const filteredEntries = this.entries.filter(entry => entry.login !== user.login);
+    this.entries = filteredEntries;
+    this.update();
   }
 }
 
@@ -53,6 +49,12 @@ export class FavoritesView extends Favorites{
       row.querySelector('.repositories').textContent = user.public_repos;
       row.querySelector('.followers').textContent = user.followers;
       
+      row.querySelector('.buttonRemove').onclick = () => {
+        const isOk = confirm(`Tem certeza que deseja deletar o usuário: ${user.name}`);
+        if(isOk){
+          this.delete(user);
+        }
+      }
 
       this.tbody.append(row);
     });
@@ -62,8 +64,8 @@ export class FavoritesView extends Favorites{
     const tr = document.createElement('tr');
 
     const content = `
-    <td class='user'>
-      <img id='img' src="" alt="">
+    <td class="user">
+      <img src="" alt="">
       <a href="" target="_blank">
         <p></p>
         <span></span>
