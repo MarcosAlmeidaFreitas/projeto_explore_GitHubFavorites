@@ -7,16 +7,16 @@ export class Favorites {
   load(){
     this.entries = [
       {
-        login: 'MarcosAlmeidaFreitas',
-        name: 'Marcos Antonio Almeida',
-        public_repos: '30',
-        followers: '0'
-      },
-      {
         login: 'maykbrito',
         name: 'Mayk Brito',
         public_repos: '76',
         followers: '120000'
+      },
+      {
+        login: 'MarcosAlmeidaFreitas',
+        name: 'Marcos Antonio Almeida',
+        public_repos: '30',
+        followers: '0'
       },
       {
         login: 'diego3g',
@@ -40,12 +40,19 @@ export class FavoritesView extends Favorites{
   update(){
     this.removeAllTr();
 
-    this.entries.forEach(user => {
+    
+    this.entries.forEach((user) => {
       console.log(user);
-      let row = this.createRow();
       
-      // row.querySelector('.user img').src = `https://github.com/${user.login}.png`;
+      const row = this.createRow();
+      
+      row.querySelector('.user img').src = `https://github.com/${user.login}.png`;
+      row.querySelector('.user img').alt = `Imagem do usuário ${user.name}`;
       row.querySelector('.user p').textContent = user.name;
+      row.querySelector('.user span').textContent = user.login;
+      row.querySelector('.repositories').textContent = user.public_repos;
+      row.querySelector('.followers').textContent = user.followers;
+      
 
       this.tbody.append(row);
     });
@@ -55,8 +62,8 @@ export class FavoritesView extends Favorites{
     const tr = document.createElement('tr');
 
     const content = `
-    td class="user">
-      <img src="" alt="">
+    <td class='user'>
+      <img id='img' src="" alt="">
       <a href="" target="_blank">
         <p></p>
         <span></span>
